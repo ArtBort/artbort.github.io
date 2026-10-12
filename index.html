@@ -43,7 +43,7 @@
   .frame{display:block;background:var(--mat);padding:10px;
     box-shadow:0 1px 1px rgba(27,33,39,.18),0 6px 10px rgba(27,33,39,.14),0 22px 32px rgba(27,33,39,.16);
     transition:transform .25s ease, box-shadow .25s ease}
-  .frame img{display:block;width:100%;height:100%;object-fit:cover}
+  .frame img{display:block;width:100%;height:auto;object-fit:cover}
   .piece:hover .frame,.piece:focus-visible .frame{transform:translateY(-6px);
     box-shadow:0 2px 2px rgba(27,33,39,.18),0 12px 16px rgba(27,33,39,.14),0 34px 44px rgba(27,33,39,.2)}
   .cap{display:block;margin-top:16px;font:500 1.0625rem/1.3 var(--display)}
@@ -56,6 +56,8 @@
   .portrait{background:var(--mat);aspect-ratio:4/5;display:grid;place-items:center;color:var(--muted);font-size:.9375rem;text-align:center;padding:16px;
     box-shadow:0 1px 1px rgba(27,33,39,.18),0 8px 14px rgba(27,33,39,.14)}
   .about p{max-width:62ch;margin:0 0 1em}
+  .portrait-img,.studio{display:block;width:100%;height:auto;box-shadow:0 1px 1px rgba(27,33,39,.18),0 8px 14px rgba(27,33,39,.14),0 22px 32px rgba(27,33,39,.16)}
+  .studio{margin-top:28px}
   .btn{display:inline-block;background:var(--accent);color:var(--accent-ink);border:0;border-radius:4px;padding:12px 22px;font:600 1rem var(--body);cursor:pointer;text-decoration:none}
   .btn:hover{filter:brightness(1.12)}
   .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
@@ -117,11 +119,12 @@
 
   <section class="block" id="about">
     <div class="wrap about">
-      <div class="portrait" role="img" aria-label="Portrait placeholder">Replace with a photo of you or your studio</div>
+      <img class="portrait-img" src="images/portrait.jpg" alt="Bort_ holding a collage in front of his face">
       <div>
         <h2>About</h2>
         <p>I'm Bart Lefèvre, and I make my work under the name Bort_. I have been making collage since I was 18, and today I build it in layers and in three dimensions.</p>
         <p>I live and work in Zelzate, Belgium. Each piece is made by hand, and I stream the whole making process live on Twitch, so you can watch a piece take shape and ask questions as it happens.</p>
+        <img class="studio" src="images/studio-banner.jpg" alt="Cut-out magazine pages, tape and a cutting mat on the studio table" loading="lazy">
       </div>
     </div>
   </section>
@@ -200,12 +203,19 @@ const SITE = {
 };
 
 const PIECES = [
-  { title:"Blue Hour",     year:2026, materials:"Paper, fabric, wood, acrylic", size:"40 × 50 × 6 cm", available:true,  ratio:"4/5", images:[] },
-  { title:"Fault Line",    year:2026, materials:"Cardboard, found metal, ink",   size:"50 × 50 × 8 cm", available:true,  ratio:"1/1", images:[] },
-  { title:"Orchard",       year:2025, materials:"Paper, thread, dried plants",   size:"60 × 45 × 5 cm", available:false, ratio:"4/3", images:[] },
-  { title:"Night Market",  year:2025, materials:"Fabric, paper, resin",          size:"30 × 40 × 7 cm", available:true,  ratio:"3/4", images:[] },
-  { title:"Salt",          year:2025, materials:"Plaster, paper, wood",          size:"45 × 45 × 6 cm", available:true,  ratio:"1/1", images:[] },
-  { title:"Tide Table",    year:2024, materials:"Paper, cardboard, paint",       size:"70 × 50 × 5 cm", available:false, ratio:"4/3", images:[] }
+  { title:"There Are More Options Than They Told You", year:"", materials:"", size:"", available:true, ratio:"699/925", images:["images/there-are-more-options-than-they-told-you.jpg"] },
+  { title:"Telling Stories Since 1992", year:"", materials:"", size:"", available:true, ratio:"949/713", images:["images/telling-stories-since-1992.jpg"] },
+  { title:"Your Fight", year:"", materials:"", size:"", available:true, ratio:"709/953", images:["images/your-fight.jpg"] },
+  { title:"Veel Geluk", year:"", materials:"", size:"", available:true, ratio:"720/930", images:["images/veel-geluk.jpg"] },
+  { title:"Redacted", year:"", materials:"", size:"", available:true, ratio:"1149/1600", images:["images/redacted.jpg"] },
+  { title:"Idealism", year:"", materials:"", size:"", available:true, ratio:"1304/1600", images:["images/idealism.jpg"] },
+  { title:"Torn Between", year:"", materials:"", size:"", available:true, ratio:"1289/1600", images:["images/torn-between.jpg"] },
+  { title:"Balance", year:"", materials:"", size:"", available:true, ratio:"618/860", images:["images/balance.jpg"] },
+  { title:"Crossing Bridges", year:"", materials:"", size:"", available:true, ratio:"948/805", images:["images/crossing-bridges.jpg"] },
+  { title:"Hanging Out the Dirty Laundry", year:"", materials:"", size:"", available:true, ratio:"1600/1520", images:["images/hanging-out-the-dirty-laundry.jpg"] },
+  { title:"The Endless Walk", year:"", materials:"", size:"", available:true, ratio:"1600/1040", images:["images/the-endless-walk.jpg"] },
+  { title:"Papier-mâché Clock (Dalí)", year:"", materials:"", size:"", available:true, ratio:"729/960", images:["images/papier-mache-clock-dali.jpg"] },
+  { title:"Papier-mâché Flower", year:"", materials:"", size:"", available:true, ratio:"707/916", images:["images/papier-mache-flower.jpg"] }
 ];
 /* ========= END OF EDIT AREA ========= */
 
@@ -245,8 +255,9 @@ const grid=document.getElementById("grid");
 PIECES.forEach(p=>{
   const b=document.createElement("button");
   b.className="piece"; b.type="button";
-  b.innerHTML=`<span class="frame" style="aspect-ratio:${p.ratio}"><img src="${p.images[0]}" alt="${p.title}, ${p.materials}" loading="lazy"></span>
-    <span class="cap">${p.title}<small>${p.year}${p.available?"":" · Sold"}</small></span>`;
+  const meta=[p.year, p.available?"":"Sold"].filter(Boolean).join(" · ");
+  b.innerHTML=`<span class="frame"><img style="aspect-ratio:${p.ratio}" src="${p.images[0]}" alt="${p.title}${p.materials?", "+p.materials:""}" loading="lazy"></span>
+    <span class="cap">${p.title}${meta?`<small>${meta}</small>`:""}</span>`;
   b.addEventListener("click",()=>openPiece(p));
   grid.appendChild(b);
 });
@@ -264,8 +275,10 @@ function show(){
 }
 function openPiece(p){
   cur=p; idx=0;
-  $("vTitle").textContent=p.title; $("vYear").textContent=p.year;
-  $("vMat").textContent=p.materials; $("vSize").textContent=p.size;
+  $("vTitle").textContent=p.title; $("vYear").textContent=p.year||"";
+  $("vMat").textContent=p.materials||""; $("vSize").textContent=p.size||"";
+  $("vMat").hidden=$("vMat").previousElementSibling.hidden=!p.materials;
+  $("vSize").hidden=$("vSize").previousElementSibling.hidden=!p.size;
   $("vStatus").textContent=p.available?"Available":"Sold";
   $("orderBtn").hidden=!p.available;
   show(); viewer.showModal();
