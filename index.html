@@ -28,7 +28,7 @@
 
   /* ---------- Cover ---------- */
   header.cover{padding:32px 0 30px;background:var(--page);color:var(--ink)}
-  .hero{position:relative;border:8px solid #000;background:#000}
+  .hero{position:relative;border:8px solid #000;background:var(--tan2);min-height:160px}
   .hero img{display:block;width:100%;height:auto;aspect-ratio:3/1;object-fit:cover}
   @media(max-width:600px){.hero img{aspect-ratio:3/2}}
   .herolabel{position:absolute;top:16px;left:50%;transform:translateX(-50%);margin:0;padding:6px 16px;border-radius:6px;background:#000;color:var(--light);
@@ -57,7 +57,8 @@
 
   /* ---------- Work ---------- */
   #work{background:var(--maroon);color:var(--light);padding:64px 0 88px}
-  h2.sec{margin:0 0 40px;font-size:clamp(1.9rem,4.5vw,2.75rem);line-height:1.15}
+  .sechead{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between;margin-bottom:40px}
+  h2.sec{margin:0;font-size:clamp(1.9rem,4.5vw,2.75rem);line-height:1.15}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:60px 44px;align-items:start}
   .piece{all:unset;cursor:pointer;display:block}
   .piece:focus-visible{outline:3px solid var(--light);outline-offset:8px}
@@ -72,11 +73,18 @@
   .band{padding:72px 0}
   .band.tan{background:var(--tan)} .band.tan2{background:var(--tan2)}
   .band.maroon{background:var(--maroon);color:var(--light)}
+  .band.black{background:var(--ink);color:var(--light)}
+  .band form{max-width:62ch;margin-top:8px}
   .band-grid{display:grid;gap:24px 56px;grid-template-columns:1fr}
   @media(min-width:860px){.band-grid{grid-template-columns:minmax(0,4fr) minmax(0,7fr)}}
   .band h2{margin:0;font-size:clamp(1.7rem,3.8vw,2.4rem);line-height:1.2}
   .band p{margin:0 0 1.1em;max-width:62ch}
   .lines{white-space:pre-line}
+  .hero.noimg{min-height:220px}
+  .hero.noimg img{display:none}
+  .band-photo{margin:8px 0 0}
+  .band-photo img{display:block;width:100%;max-width:520px;height:auto;border:8px solid #000}
+  @media(min-width:860px){.band-photo{grid-column:2}}
   .intro-photo{display:none}
   .withphoto .intro-photo{display:block}
   .band-grid.intro-grid{grid-template-columns:1fr}
@@ -124,8 +132,8 @@
 
 <header class="cover" id="top">
   <div class="wrap">
-    <div class="hero">
-      <img src="images/studio-banner.jpg" alt="Cut-out magazine pages, tape and a cutting mat on my studio table" width="1500" height="500">
+    <div class="hero noimg">
+      <img alt="Cut-out magazine pages, tape and a cutting mat on my studio table" width="1500" height="500">
       <h1 class="herolabel">Bort_ / Collage artist / <span id="heroYear"></span></h1>
     </div>
     <p class="sub">Collage and papier-mâché, made from recycled paper and cardboard.</p>
@@ -139,7 +147,10 @@
 <main>
   <section id="work" class="on-dark" aria-label="Work">
     <div class="wrap">
-      <h2 class="sec">Work</h2>
+      <div class="sechead">
+        <h2 class="sec">Work</h2>
+        <button class="btn ghost" type="button" id="orderOpen">Order a print or original</button>
+      </div>
       <div class="grid" id="grid"></div>
     </div>
   </section>
@@ -147,7 +158,7 @@
   <section id="about" aria-label="About">
     <div class="band tan" id="introBand">
       <div class="wrap band-grid intro-grid">
-        <div class="intro-photo" id="aboutPhoto"></div>
+        <div class="intro-photo"><img alt="Bort_ holding a collage in front of his face"></div>
         <div>
           <h2>Bart Lefèvre</h2>
           <p class="lines" style="margin-top:28px">hi,
@@ -167,78 +178,81 @@ thank you for reading this.</p>
       <div class="wrap band-grid">
         <h2>Streaming art on the internet</h2>
         <div>
-          <p class="lines">In 2017, I started sharing my creation process by streaming live on the internet.
-To be specific, on Twitch.com, at the time I lived in Belgium in a small caravan.
-It was a place where I could let my feelings flow and share them with others.
-A few strokes of glue to put everything together, and we had our own place.
-Where creative people came to share and enjoy the creative process.
-It's strange what effect a few old photos can have on you.
-At this point the live stream has become a place where I like to start from.
-To motivate me to do all the little things that make me happy and share them with whoever is interested.</p>
+          <p>In 2017, I started opening up my creative process to the world by streaming live on Twitch. At the time, I was living in a small caravan in Belgium—a quiet, intimate space where I could let my emotions flow and connect with others. Piece by piece, like strokes of glue holding a collage together, we built our own community. It became a sanctuary where creative minds gathered to share, inspire, and simply enjoy the process of making art. Looking back, it’s amazing how much a few old photos can stir up. Today, livestreaming remains my springboard—a space that motivates me to tackle the little things that bring me joy, and to share those moments with whoever stops by.</p>
           <p><a class="btn" id="live2" href="https://www.twitch.tv/bort_" target="_blank" rel="noopener noreferrer">Join the stream</a></p>
         </div>
+        <figure class="band-photo" data-folder="about-streaming" hidden><img alt="From the live stream"></figure>
       </div>
     </div>
 
     <div class="band tan">
       <div class="wrap band-grid">
         <h2>Recycled materials</h2>
-        <p class="lines">To me, there was always something special in seeing value in things that people discard.
-The overconsumption is massive.
-There is a lot of material available to work with.
-One of my favourite easy-to-find materials is cardboard; it's strong, and it has nice tones of brown.
-To be honest, my absolute favourite resource material is old magazines, from the 1920s in particular.
-Although 70s magazines are also up there.
-The message is: the material is out there!
-It has its own beauty; you just have to see it.</p>
+        <p>There has always been something deeply meaningful to me about finding value in what others discard. In a world driven by massive overconsumption, art materials are everywhere—you just have to look for them. One of my favorite, everyday staples is simple cardboard; it’s sturdy, resilient, and brings rich, warm brown tones to a piece. But my absolute favorite resource? Vintage magazines, particularly from the 1920s, with 1970s print as a close second. The underlying truth of my work is simple: the material is already out there. It carries its own intrinsic beauty—you just have to see it.</p>
+        <figure class="band-photo" data-folder="about-recycled" hidden><img alt="Work made from recycled materials"></figure>
       </div>
     </div>
 
     <div class="band maroon on-dark">
       <div class="wrap band-grid">
         <h2>Surrealism</h2>
-        <p class="lines">I have always been a surrealist at heart.
-When I first saw a surreal painting, I was lost in a world of imagination; it never really left me.
-When I saw the work of a Dadaist for the first time, I was very confused.
-It broke all the rules; it triggered my brain in a way that I had not encountered before.
-The freedom to create something that is unique and not bound by rules.</p>
+        <p>I’ve always been a surrealist at heart. The first time I encountered a surrealist painting, I was completely absorbed in a world of pure imagination—and it never truly left me. Later, when I discovered Dadaism, it left me utterly bewildered. It broke every rule, challenging my brain in a way I’d never experienced before. That revelation introduced me to complete creative freedom: the ability to make work that is entirely unique, unburdened by convention.</p>
+        <figure class="band-photo" data-folder="about-surrealism" hidden><img alt="Surreal collage work"></figure>
       </div>
     </div>
   </section>
 
-  <section class="band tan2" id="contact" aria-label="Contact">
-    <div class="wrap contact">
+  <section class="band tan" id="exhibit" aria-label="Looking to exhibit">
+    <div class="wrap band-grid">
+      <h2>Looking to exhibit</h2>
       <div>
-        <h2 style="margin:0 0 24px;font-size:clamp(1.7rem,3.8vw,2.4rem);line-height:1.2">Looking to exhibit</h2>
         <p class="lines">Are you interested in hosting my artwork?
 I am always looking to exhibit my work.
 Send me a message and I will get back to you.
 It would be my pleasure
 to share my work with your audience.</p>
-        <p><button class="btn" type="button" id="orderOpen">Order a print or original</button></p>
-        <p class="mailline">Or write to <a id="mail" href="#"></a></p>
-        <p>Follow along and watch new pieces being made live:</p>
+        <p><a class="btn" id="exhibitBtn" href="#contact">Write to me about an exhibition</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band black on-dark" id="follow" aria-label="Social links">
+    <div class="wrap band-grid">
+      <h2>Follow along</h2>
+      <div>
+        <p>Watch new pieces being made live, or follow the work on your favourite platform.</p>
         <ul class="socials" id="socials"></ul>
       </div>
-      <form id="contactForm" novalidate>
-        <div class="fields">
-          <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <label>Your name<input name="name" required autocomplete="name"></label>
-          <label>Email<input name="email" type="email" required autocomplete="email"></label>
-          <label>What is it about?
-            <select name="topic">
-              <option>Exhibition or hosting my work</option>
-              <option>Question about a piece</option>
-              <option>Collaboration or press</option>
-              <option>Something else</option>
-            </select>
-          </label>
-          <label>Message<textarea name="message" required></textarea></label>
-          <p class="msg" id="cMsg" role="status" aria-live="polite"></p>
-          <div><button class="btn" type="submit" id="cSend">Send message</button></div>
-          <p class="note">I only use your details to reply to your message.</p>
-        </div>
-      </form>
+    </div>
+  </section>
+
+  <section class="band tan2" id="contact" aria-label="Contact">
+    <div class="wrap band-grid">
+      <h2>Contact</h2>
+      <div>
+        <p>Questions or work inquiries? Send me a message and I will get back to you.</p>
+        <p class="mailline">Or write to <a id="mail" href="#"></a></p>
+        <form id="contactForm" novalidate>
+          <div class="fields">
+            <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <label>Your name<input name="name" required autocomplete="name"></label>
+            <label>Email<input name="email" type="email" required autocomplete="email"></label>
+            <label>What is it about?
+              <select name="topic">
+                <option>Question about my work</option>
+                <option>Exhibition or hosting my work</option>
+                <option>Commission or work inquiry</option>
+                <option>Collaboration or press</option>
+                <option>Something else</option>
+              </select>
+            </label>
+            <label>Message<textarea name="message" required></textarea></label>
+            <p class="msg" id="cMsg" role="status" aria-live="polite"></p>
+            <div><button class="btn" type="submit" id="cSend">Send message</button></div>
+            <p class="note">I only use your details to reply to your message.</p>
+          </div>
+        </form>
+      </div>
     </div>
   </section>
 </main>
@@ -290,37 +304,50 @@ to share my work with your audience.</p>
 
 <script>
 /* ========= EDIT THIS PART =========
-   1. Your email and the form address.
-   2. USE_PHOTOS: keep false to show placeholders. When your photos are uploaded to the
-      "images" folder on GitHub, change it to true.
-   3. Your pieces: fill in year, materials and size. Set original:false when the original is
-      sold, print:false if there is no print. Add prices as text, for example "€45".
+   1. Your email and the form address (SITE).
+   2. Your pieces (PIECES): fill in year, materials and size. Set original:false when the
+      original is sold, print:false if there is no print. Add prices as text, e.g. "€45".
+
+   PHOTOS: every place on the site has its own folder inside "images". Put your photos in
+   that folder and name them 1.jpg, 2.jpg and 3.jpg (.jpeg and .png also work).
+   Photo 1 is the main photo, photos 2 and 3 are extra photos shown when someone opens a piece.
+   No code changes needed. A missing photo simply does not show.
+     images/header/            1.jpg  the big photo at the top of the page
+     images/portrait/          1.jpg  your photo next to the intro text
+     images/about-streaming/   1.jpg  optional photo in "Streaming art on the internet"
+     images/about-recycled/    1.jpg  optional photo in "Recycled materials"
+     images/about-surrealism/  1.jpg  optional photo in "Surrealism"
+     images/work-01/ ... work-13/   1.jpg, 2.jpg, 3.jpg for each piece below ("folder")
 */
 const SITE = {
   email: "bartlefevreart@gmail.com",
   // Create a free form at formspree.io, then paste your form address here:
   formEndpoint: "https://formspree.io/f/YOUR_FORM_ID",
+  // Add, remove or reorder social links here. Each needs a label and a link.
   socials: [
     { label: "Instagram", url: "https://www.instagram.com/_.bort_/" },
-    { label: "Twitch (live streams)", url: "https://www.twitch.tv/bort_" }
+    { label: "YouTube", url: "https://www.youtube.com/@bort6489" },
+    { label: "Twitch (live streams)", url: "https://www.twitch.tv/bort_" },
+    { label: "Kick (live streams)", url: "https://kick.com/bort-0" },
+    { label: "X", url: "https://x.com/__BorT__" },
+    { label: "LinkedIn", url: "https://www.linkedin.com/in/bort-a7a3b31bb/" }
   ]
 };
-const USE_PHOTOS = false;
 
 const PIECES = [
-  { title:"There Are More Options Than They Told You", slug:"there-are-more-options-than-they-told-you", year:"", materials:"", size:"", original:true, print:true, originalPrice:"", printPrice:"", ratio:"699/925" },
-  { title:"Telling Stories Since 1992", slug:"telling-stories-since-1992", year:"", materials:"", size:"", original:true, print:true, originalPrice:"", printPrice:"", ratio:"949/713" },
-  { title:"Your Fight", slug:"your-fight", year:"", materials:"", size:"", original:true, print:true, originalPrice:"", printPrice:"", ratio:"709/953" },
-  { title:"Veel Geluk", slug:"veel-geluk", year:"", materials:"", size:"", original:true, print:true, originalPrice:"", printPrice:"", ratio:"720/930" },
-  { title:"Redacted", slug:"redacted", year:"", materials:"", size:"", original:true, print:true, originalPrice:"", printPrice:"", ratio:"1149/1600" },
-  { title:"Idealism", slug:"idealism", year:"", materials:"", size:"", original:true, print:true, originalPrice:"", printPrice:"", ratio:"1304/1600" },
-  { title:"Torn Between", slug:"torn-between", year:"", materials:"", size:"", original:true, print:true, originalPrice:"", printPrice:"", ratio:"1289/1600" },
-  { title:"Balance", slug:"balance", year:"", materials:"", size:"", original:true, print:true, originalPrice:"", printPrice:"", ratio:"618/860" },
-  { title:"Crossing Bridges", slug:"crossing-bridges", year:"", materials:"", size:"", original:true, print:true, originalPrice:"", printPrice:"", ratio:"948/805" },
-  { title:"Hanging Out the Dirty Laundry", slug:"hanging-out-the-dirty-laundry", year:"", materials:"", size:"", original:true, print:true, originalPrice:"", printPrice:"", ratio:"1600/1520" },
-  { title:"The Endless Walk", slug:"the-endless-walk", year:"", materials:"", size:"", original:true, print:true, originalPrice:"", printPrice:"", ratio:"1600/1040" },
-  { title:"Papier-mâché Clock (Dalí)", slug:"papier-mache-clock-dali", year:"", materials:"", size:"", original:true, print:true, originalPrice:"", printPrice:"", ratio:"729/960" },
-  { title:"Papier-mâché Flower", slug:"papier-mache-flower", year:"", materials:"", size:"", original:true, print:true, originalPrice:"", printPrice:"", ratio:"707/916" }
+  { folder:"work-01", title:"There Are More Options Than They Told You", year:"", materials:"", size:"", original:true, print:true, originalPrice:"", printPrice:"" },
+  { folder:"work-02", title:"Telling Stories Since 1992", year:"", materials:"", size:"", original:true, print:true, originalPrice:"", printPrice:"" },
+  { folder:"work-03", title:"Your Fight", year:"", materials:"", size:"", original:true, print:true, originalPrice:"", printPrice:"" },
+  { folder:"work-04", title:"Veel Geluk", year:"", materials:"", size:"", original:true, print:true, originalPrice:"", printPrice:"" },
+  { folder:"work-05", title:"Redacted", year:"", materials:"", size:"", original:true, print:true, originalPrice:"", printPrice:"" },
+  { folder:"work-06", title:"Idealism", year:"", materials:"", size:"", original:true, print:true, originalPrice:"", printPrice:"" },
+  { folder:"work-07", title:"Torn Between", year:"", materials:"", size:"", original:true, print:true, originalPrice:"", printPrice:"" },
+  { folder:"work-08", title:"Balance", year:"", materials:"", size:"", original:true, print:true, originalPrice:"", printPrice:"" },
+  { folder:"work-09", title:"Crossing Bridges", year:"", materials:"", size:"", original:true, print:true, originalPrice:"", printPrice:"" },
+  { folder:"work-10", title:"Hanging Out the Dirty Laundry", year:"", materials:"", size:"", original:true, print:true, originalPrice:"", printPrice:"" },
+  { folder:"work-11", title:"The Endless Walk", year:"", materials:"", size:"", original:true, print:true, originalPrice:"", printPrice:"" },
+  { folder:"work-12", title:"Papier-mâché Clock (Dalí)", year:"", materials:"", size:"", original:true, print:true, originalPrice:"", printPrice:"" },
+  { folder:"work-13", title:"Papier-mâché Flower", year:"", materials:"", size:"", original:true, print:true, originalPrice:"", printPrice:"" }
 ];
 /* ========= END OF EDIT AREA ========= */
 
@@ -339,11 +366,6 @@ SITE.socials.forEach(l=>{
 });
 const tw=SITE.socials.find(l=>l.url.includes("twitch.tv")); if(tw){ $("live").href=tw.url; $("live2").href=tw.url; }
 
-/* Portrait next to the intro text, only once real photos exist */
-if(USE_PHOTOS){
-  $("aboutPhoto").innerHTML='<img src="images/portrait.jpg" alt="Bort_ holding a collage in front of his face">';
-  $("introBand").classList.add("withphoto");
-}
 
 /* Placeholder generator: layered paper shapes in the site's earthy colors */
 function rng(seed){let a=seed;return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
@@ -359,8 +381,36 @@ function placeholder(seed, ratio, view){
   s+=`<g filter="url(#d)"><circle cx="${(W*(.3+r()*.4))|0}" cy="${(H*(.3+r()*.4))|0}" r="${(Math.min(W,H)*.12)|0}" fill="${p[1]}"/></g>`;
   return "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(s+"</svg>");
 }
-PIECES.forEach((p,i)=>{
-  p.images = USE_PHOTOS ? [`images/${p.slug}.jpg`] : [0,1,2].map(v=>placeholder(i+1,p.ratio,v));
+PIECES.forEach((p,i)=>{p.seed=i+1;});
+
+/* Photo finder: looks for images/<folder>/<n>.jpg (also .jpeg, .png, ...) and returns the address or null */
+const EXT=["jpg","jpeg","png","JPG","JPEG","webp"];
+function loadSlot(folder,n){
+  return new Promise(resolve=>{
+    let i=0;
+    const next=()=>{
+      if(i>=EXT.length) return resolve(null);
+      const u=`images/${folder}/${n}.${EXT[i++]}`, t=new Image();
+      t.onload=()=>resolve(u); t.onerror=next; t.src=u;
+    };
+    next();
+  });
+}
+
+/* Page photos: header, portrait and the optional photos in the About sections */
+loadSlot("header",1).then(u=>{
+  if(!u) return;
+  const im=document.querySelector(".hero img");
+  im.onload=()=>im.closest(".hero").classList.remove("noimg");
+  im.src=u;
+});
+loadSlot("portrait",1).then(u=>{
+  if(!u) return;
+  document.querySelector(".intro-photo img").src=u;
+  $("introBand").classList.add("withphoto");
+});
+document.querySelectorAll(".band-photo[data-folder]").forEach(f=>{
+  loadSlot(f.dataset.folder,1).then(u=>{ if(u){ f.querySelector("img").src=u; f.hidden=false; } });
 });
 
 /* Gallery grid */
@@ -368,8 +418,10 @@ const grid=$("grid");
 PIECES.forEach(p=>{
   const b=document.createElement("button");
   b.className="piece"; b.type="button";
-  b.innerHTML=`<span class="frame"><img style="aspect-ratio:${p.ratio}" src="${p.images[0]}" alt="${p.title}${p.materials?", "+p.materials:""}" loading="lazy"></span>
+  b.innerHTML=`<span class="frame"><img style="aspect-ratio:4/5" src="${placeholder(p.seed,"4/5",0)}" alt="${p.title}${p.materials?", "+p.materials:""}"></span>
     <span class="cap">${p.title}${p.year?`<small>${p.year}</small>`:""}</span>`;
+  const im=b.querySelector("img");
+  loadSlot(p.folder,1).then(u=>{ if(u){ p.s1=u; im.style.aspectRatio=""; im.src=u; } });
   b.addEventListener("click",()=>openPiece(p));
   grid.appendChild(b);
 });
@@ -377,6 +429,10 @@ PIECES.forEach(p=>{
 /* Piece viewer */
 const viewer=$("viewer"), orderDlg=$("orderDlg");
 let cur=null, idx=0;
+function photos(p){
+  const list=[p.s1,p.s2,p.s3].filter(Boolean);
+  return list.length?list:[placeholder(p.seed,"4/5",0)];
+}
 function show(){
   $("vImg").src=cur.images[idx];
   $("vImg").alt=`${cur.title}, photo ${idx+1} of ${cur.images.length}`;
@@ -384,15 +440,23 @@ function show(){
   const multi=cur.images.length>1;
   $("prev").hidden=!multi; $("next").hidden=!multi;
 }
+function probe(p){
+  if(p.probed) return; p.probed=true;
+  [2,3].forEach(n=>loadSlot(p.folder,n).then(u=>{
+    if(!u) return;
+    p["s"+n]=u;
+    if(cur===p){ cur.images=photos(p); show(); }
+  }));
+}
 function openPiece(p){
-  cur=p; idx=0;
+  cur=p; idx=0; p.images=photos(p);
   $("vTitle").textContent=p.title; $("vYear").textContent=p.year||"";
   const rows=[["Materials",p.materials],["Size",p.size],
     ["Original",p.original?"Available"+(p.originalPrice?" · "+p.originalPrice:""):"Sold"],
     ["Print",p.print?"Available"+(p.printPrice?" · "+p.printPrice:""):"Not available"]].filter(r=>r[1]);
   $("vDl").innerHTML=rows.map(r=>`<dt>${r[0]}</dt><dd>${r[1]}</dd>`).join("");
   $("orderBtn").hidden=!(p.original||p.print);
-  show(); viewer.showModal();
+  show(); viewer.showModal(); probe(p);
 }
 $("prev").onclick=()=>{idx=(idx-1+cur.images.length)%cur.images.length;show()};
 $("next").onclick=()=>{idx=(idx+1)%cur.images.length;show()};
@@ -421,6 +485,12 @@ function openOrder(p){
 $("orderBtn").onclick=()=>openOrder(cur);
 $("orderOpen").onclick=()=>openOrder(null);
 $("navOrder").addEventListener("click",e=>{e.preventDefault();openOrder(null)});
+
+/* "Write to me about an exhibition" jumps to the form with the topic already chosen */
+$("exhibitBtn").addEventListener("click",()=>{
+  $("contactForm").elements.topic.value="Exhibition or hosting my work";
+  setTimeout(()=>$("contactForm").elements.name.focus({preventScroll:true}),500);
+});
 
 /* Forms: both send to your email through Formspree */
 function wireForm(form, msg, btn, subject, okText){
