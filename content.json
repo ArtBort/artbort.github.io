@@ -131,30 +131,6 @@
       "print": true,
       "originalPrice": "650",
       "printPrice": "40"
-    },
-    {
-      "folder": "work-12",
-      "title": "Papier-mâché Clock (Dalí)",
-      "year": "",
-      "materials": "",
-      "size": "",
-      "description": "",
-      "original": true,
-      "print": true,
-      "originalPrice": "",
-      "printPrice": ""
-    },
-    {
-      "folder": "work-13",
-      "title": "Papier-mâché Flower",
-      "year": "",
-      "materials": "",
-      "size": "",
-      "description": "",
-      "original": true,
-      "print": true,
-      "originalPrice": "",
-      "printPrice": ""
     }
   ]
 }
