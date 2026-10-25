@@ -13,18 +13,6 @@
       "printPrice": "40"
     },
     {
-      "folder": "work-02",
-      "title": "Clock Dali",
-      "year": "2025",
-      "materials": "paper cardboard flour water paint ",
-      "size": "?",
-      "description": "Papier mache clock Dali inspired ",
-      "original": true,
-      "print": true,
-      "originalPrice": "800",
-      "printPrice": ""
-    },
-    {
       "folder": "work-03",
       "title": "Crossing bridges ",
       "year": "2026",
@@ -35,6 +23,18 @@
       "print": true,
       "originalPrice": "200",
       "printPrice": "40"
+    },
+    {
+      "folder": "work-02",
+      "title": "Clock Dali",
+      "year": "2025",
+      "materials": "paper cardboard flour water paint ",
+      "size": "?",
+      "description": "Papier mache clock Dali inspired ",
+      "original": true,
+      "print": true,
+      "originalPrice": "800",
+      "printPrice": ""
     },
     {
       "folder": "work-04",
