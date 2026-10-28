@@ -1,4 +1,7 @@
 {
+  "settings": {
+    "formEndpoint": "https://formspree.io/f/moeedggn"
+  },
   "works": [
     {
       "folder": "work-01",
