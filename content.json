@@ -141,8 +141,8 @@
       "description": "",
       "original": true,
       "print": true,
-      "originalPrice": "",
-      "printPrice": ""
+      "originalPrice": "500",
+      "printPrice": "40"
     }
   ]
 }
