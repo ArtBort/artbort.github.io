@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin – Bort_</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --page:#CDC4BD; --tan:#BFB19D; --tan2:#C4B6A5; --maroon:#5F2323; --ink:#0B0B0B; --light:#F1E9DF;
+    --display:"Special Elite","Courier New",ui-monospace,monospace;
+    --body:"Cutive Mono","Courier New",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--page);color:var(--ink);font:400 1.0625rem/1.7 var(--body)}
+  :focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px}
+  header{background:var(--maroon);color:var(--light);padding:22px 0;border-bottom:6px solid #000}
+  header .wrap{display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center;justify-content:space-between}
+  h1,h2,h3{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.03em;margin:0}
+  h1{font-size:1.6rem}
+  h2{font-size:1.4rem;margin-bottom:14px}
+  main{padding:32px 0 120px}
+  .panel{background:var(--tan);border:4px solid #000;padding:24px;margin-bottom:24px}
+  label{display:grid;gap:5px;font:400 .95rem var(--display);letter-spacing:.06em;text-transform:uppercase}
+  input,textarea{width:100%;font:400 1rem var(--body);letter-spacing:0;text-transform:none;padding:10px;border:2px solid #000;border-radius:0;background:#F6F1E8;color:var(--ink)}
+  textarea{min-height:110px;resize:vertical}
+  .row{display:grid;gap:14px}
+  @media(min-width:640px){.row.two{grid-template-columns:1fr 1fr}.row.three{grid-template-columns:1fr 1fr 1fr}}
+  .btn{display:inline-block;padding:10px 18px;border:2px solid #000;background:#000;color:var(--light);font:400 .95rem var(--display);letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border-radius:0;text-decoration:none}
+  .btn:hover{background:var(--maroon);border-color:var(--maroon)}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  .btn.ghost{background:transparent;color:inherit;border-color:currentColor}
+  .btn.ghost:hover{background:var(--ink);color:var(--light)}
+  header .btn.ghost:hover{background:var(--light);color:var(--ink);border-color:var(--light)}
+  .check{display:flex;gap:10px;align-items:center;font:400 1rem var(--body);text-transform:none;letter-spacing:0}
+  .check input{width:22px;height:22px;flex:none}
+  .msg{min-height:1.7em;margin:12px 0 0;font-weight:700}
+  .msg.err{background:#000;color:#F0A070;display:inline-block;padding:2px 10px}
+  details{margin-top:18px}
+  summary{cursor:pointer;font:400 1rem var(--display);text-transform:uppercase;letter-spacing:.06em}
+  details ol{margin:10px 0 0;padding-left:22px}
+  details li{margin-bottom:6px}
+  .work{background:var(--tan2);border:4px solid #000;margin-bottom:22px}
+  .work-head{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;padding:14px 16px;background:#000;color:var(--light)}
+  .thumb{width:56px;height:56px;background:var(--tan);border:2px solid var(--light);display:grid;place-items:center;overflow:hidden;font-size:.7rem;text-align:center;color:var(--ink);line-height:1.1}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .work-head .folder{font:400 1.05rem var(--display);letter-spacing:.06em;flex:1;min-width:140px}
+  .work-head .folder small{display:block;font:400 .85rem var(--body);opacity:.85;letter-spacing:0}
+  .work-head .btn{padding:6px 12px;font-size:.85rem;color:var(--light);border-color:var(--light);background:transparent}
+  .work-head .btn:hover{background:var(--light);color:var(--ink)}
+  .work-body{padding:18px 16px 20px;display:grid;gap:14px}
+  .checks{display:flex;flex-wrap:wrap;gap:12px 28px}
+  .bar{position:fixed;left:0;right:0;bottom:0;background:#000;color:var(--light);padding:12px 0;z-index:20;border-top:3px solid var(--tan)}
+  .bar .wrap{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between}
+  .bar .btn{background:var(--light);color:var(--ink);border-color:var(--light)}
+  .bar .btn:hover{background:var(--tan);border-color:var(--tan);color:var(--ink)}
+  .bar .btn:disabled{opacity:.4}
+  .note{font-size:.95rem;margin:6px 0 0}
+  .photos{border-top:2px solid #000;padding-top:14px}
+  .photos-title{font:400 1rem var(--display);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+  .slot{background:var(--tan);border:2px solid #000;padding:8px;display:grid;gap:6px;align-content:start}
+  .slot-img{aspect-ratio:4/5;background:#F6F1E8;border:2px solid #000;display:grid;place-items:center;overflow:hidden;font-size:.85rem}
+  .slot-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .slot-lab{font:400 .85rem var(--display);text-transform:uppercase;letter-spacing:.05em}
+  .slot-btns{display:flex;gap:6px;flex-wrap:wrap}
+  .btn.small{padding:5px 10px;font-size:.8rem}
+  .slot-msg{font-size:.8rem;min-height:1.2em}
+  .slot-msg.err{font-weight:700;text-decoration:underline}
+  [hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Admin · Bort_</h1>
+    <div id="who" hidden>
+      <span id="whoText"></span>
+      <a class="btn ghost" id="viewSite" href="index.html" target="_blank" rel="noopener">View site</a>
+      <button class="btn ghost" type="button" id="logout">Log out</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- Login -->
+  <section id="loginView" class="panel">
+    <h2>Log in</h2>
+    <p>You log in with a GitHub access token. It works like a key that only you have. Without it nobody can change your site, even though this page is public.</p>
+    <form id="loginForm" class="row" novalidate>
+      <label>Access token<input id="token" type="password" autocomplete="off" required placeholder="github_pat_…"></label>
+      <div class="row two">
+        <label>GitHub username<input id="owner" required></label>
+        <label>Repository name<input id="repo" required></label>
+      </div>
+      <label class="check"><input type="checkbox" id="remember"> Keep me logged in on this device</label>
+      <div><button class="btn" type="submit" id="loginBtn">Log in</button></div>
+      <p class="msg" id="loginMsg" role="status" aria-live="polite"></p>
+    </form>
+    <details>
+      <summary>How do I get a token?</summary>
+      <ol>
+        <li>On github.com, click your profile picture, then <b>Settings</b>.</li>
+        <li>Scroll to the bottom of the left menu and click <b>Developer settings</b>, then <b>Personal access tokens</b>, then <b>Fine-grained tokens</b>.</li>
+        <li>Click <b>Generate new token</b> and give it a name, like "Website admin".</li>
+        <li>Pick an expiry date (for example 90 days). When it expires you just make a new one.</li>
+        <li>Under <b>Repository access</b> choose <b>Only select repositories</b> and pick your website repository.</li>
+        <li>Under <b>Permissions</b>, then <b>Repository permissions</b>, set <b>Contents</b> to <b>Read and write</b>.</li>
+        <li>Click <b>Generate token</b> and copy it. GitHub only shows it once, so paste it here straight away. Menu names can differ a little over time.</li>
+      </ol>
+      <p class="note">Only tick "Keep me logged in" on your own device. If you lose the token or think someone saw it, delete it on GitHub and make a new one.</p>
+    </details>
+  </section>
+
+  <!-- Editor -->
+  <section id="editView" hidden>
+    <div class="panel">
+      <h2>Your works</h2>
+      <p>Change the name, description and details of each work, then press <b>Save changes</b>. The site updates about a minute later.</p>
+      <p class="note">Photos upload straight away when you pick them. They do not need the Save button. A work only shows on the site once it has Photo 1.</p>
+    </div>
+    <div class="panel" id="settingsPanel">
+      <h2>Settings</h2>
+      <label>Form address (Formspree)<input id="formEndpoint" placeholder="https://formspree.io/f/abcd1234" autocomplete="off"></label>
+      <p class="note">Messages from the contact form and the order form are emailed to you through this address. Create it for free at formspree.io, then paste it here and press Save changes.</p>
+    </div>
+    <div class="panel" id="pagePhotos"></div>
+    <div id="list"></div>
+    <div class="panel"><button class="btn" type="button" id="addWork">+ Add a work</button>
+      <p class="note">A new work gets its own folder name. Upload its photos into that folder on GitHub and it appears on the site.</p></div>
+  </section>
+</main>
+
+<div class="bar" id="saveBar" hidden>
+  <div class="wrap">
+    <span id="saveMsg" role="status" aria-live="polite">No changes yet.</span>
+    <button class="btn" type="button" id="save" disabled>Save changes</button>
+  </div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+/* Starting list, used only if content.json does not exist yet */
+const DEFAULT_TITLES=["There Are More Options Than They Told You","Telling Stories Since 1992","Your Fight","Veel Geluk","Redacted","Idealism","Torn Between","Balance","Crossing Bridges","Hanging Out the Dirty Laundry","The Endless Walk","Papier-mâché Clock (Dalí)","Papier-mâché Flower"];
+const blank=(folder,title)=>({folder,title,year:"",materials:"",size:"",description:"",original:true,print:true,originalPrice:"",printPrice:""});
+const DEFAULT_WORKS=DEFAULT_TITLES.map((t,i)=>blank("work-"+String(i+1).padStart(2,"0"),t));
+
+const API="https://api.github.com";
+let S={token:"",owner:"",repo:"",branch:"main",sha:null,works:[],settings:{formEndpoint:""},dirty:false,tree:{},root:"",preview:{},busy:false,treeOk:true};
+
+/* ---------- GitHub helpers ---------- */
+async function gh(path,opts){
+  opts=opts||{};
+  const r=await fetch(API+path,Object.assign({},opts,{headers:Object.assign({
+    "Accept":"application/vnd.github+json","Authorization":"Bearer "+S.token,"X-GitHub-Api-Version":"2022-11-28"},opts.headers||{})}));
+  let body=null; try{ body=await r.json(); }catch(e){}
+  return {ok:r.ok,status:r.status,body};
+}
+const toB64=str=>btoa(unescape(encodeURIComponent(str)));
+const fromB64=b=>decodeURIComponent(escape(atob(b.replace(/\s/g,""))));
+
+/* ---------- Login ---------- */
+const hostOwner=location.hostname.endsWith(".github.io")?location.hostname.split(".")[0]:"";
+const seg=location.pathname.split("/")[1];
+$("owner").value=hostOwner;
+$("repo").value=hostOwner?((seg&&!seg.includes("."))?seg:hostOwner+".github.io"):"";
+
+function loginError(t){ $("loginMsg").className="msg err"; $("loginMsg").textContent=t; }
+
+async function login(token,owner,repo,remember){
+  $("loginMsg").className="msg"; $("loginMsg").textContent="Logging in…"; $("loginBtn").disabled=true;
+  S.token=token; S.owner=owner; S.repo=repo;
+  try{
+    const info=await gh(`/repos/${owner}/${repo}`);
+    if(info.status===401) throw new Error("That token was not accepted. Check that you copied all of it and that it has not expired.");
+    if(info.status===404) throw new Error("Repository not found. Check the username and repository name, and that the token has access to this repository.");
+    if(!info.ok) throw new Error("GitHub said: "+((info.body&&info.body.message)||info.status));
+    if(info.body.permissions&&info.body.permissions.push===false) throw new Error("This token can only read the repository. Give it Contents: Read and write.");
+    S.branch=info.body.default_branch||"main";
+    const f=await gh(`/repos/${owner}/${repo}/contents/content.json?ref=${encodeURIComponent(S.branch)}&t=${Date.now()}`);
+    if(f.ok&&f.body&&f.body.content){
+      const j=JSON.parse(fromB64(f.body.content));
+      S.works=(j.works||[]).map(w=>Object.assign(blank(w.folder||"",w.title||""),w));
+      S.settings=Object.assign({formEndpoint:""},j.settings||{});
+      S.sha=f.body.sha;
+    }else if(f.status===404){
+      S.works=DEFAULT_WORKS.map(w=>Object.assign({},w)); S.settings={formEndpoint:""}; S.sha=null;
+    }else throw new Error("Could not read content.json: "+((f.body&&f.body.message)||f.status));
+    S.treeOk=await loadTree();
+    const store=remember?localStorage:sessionStorage; (remember?sessionStorage:localStorage).removeItem("bort_admin");
+    store.setItem("bort_admin",JSON.stringify({token,owner,repo}));
+    $("loginView").hidden=true; $("editView").hidden=false; $("saveBar").hidden=false; $("who").hidden=false;
+    $("whoText").textContent=`${owner}/${repo}`;
+    S.dirty=false; $("formEndpoint").value=S.settings.formEndpoint||""; render(); renderPagePhotos(); setSave();
+    if(S.sha===null){ $("saveMsg").textContent="content.json does not exist yet. It will be created when you save."; }
+  }catch(e){
+    S.token=""; loginError(e.message||"Could not log in.");
+  }finally{ $("loginBtn").disabled=false; }
+}
+$("loginForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const t=$("token").value.trim(), o=$("owner").value.trim(), r=$("repo").value.trim();
+  if(!t||!o||!r){ loginError("Please fill in the token, username and repository name."); return; }
+  login(t,o,r,$("remember").checked);
+});
+$("logout").onclick=()=>{
+  if(S.dirty&&!confirm("You have unsaved changes. Log out anyway?")) return;
+  localStorage.removeItem("bort_admin"); sessionStorage.removeItem("bort_admin"); S.dirty=false; location.reload();
+};
+(function auto(){
+  const raw=localStorage.getItem("bort_admin")||sessionStorage.getItem("bort_admin");
+  if(!raw) return;
+  try{ const c=JSON.parse(raw); $("owner").value=c.owner; $("repo").value=c.repo; $("remember").checked=!!localStorage.getItem("bort_admin"); login(c.token,c.owner,c.repo,!!localStorage.getItem("bort_admin")); }catch(e){}
+})();
+
+/* ---------- Photos ---------- */
+const SLOT_LABELS={1:"Photo 1 (main)",2:"Photo 2",3:"Photo 3"};
+const PAGE_SLOTS=[["header","Header photo (top of the page)"],["portrait","Portrait next to the intro"],["about-streaming","Streaming art section"],["about-recycled","Recycled materials section"],["about-surrealism","Surrealism section"],["about-exhibit","Looking to exhibit section"]];
+const encPath=p=>p.split("/").map(encodeURIComponent).join("/");
+const FOLDERS_RE="(?:work-\\d+|header|portrait|about-[a-z]+)";
+
+async function loadTree(){
+  const r=await gh(`/repos/${S.owner}/${S.repo}/git/trees/${encodeURIComponent(S.branch)}?recursive=1`);
+  S.tree={};
+  if(r.ok&&r.body&&r.body.tree) r.body.tree.forEach(t=>{ if(t.type==="blob") S.tree[t.path]=t.sha; });
+  const keys=Object.keys(S.tree);
+  const top=keys.some(p=>new RegExp("^"+FOLDERS_RE+"/").test(p));
+  const inImg=keys.some(p=>new RegExp("^images/"+FOLDERS_RE+"/").test(p));
+  S.root=(!top&&inImg)?"images/":"";
+  return r.ok;
+}
+function slotPaths(folder,n){
+  const re=new RegExp("^(?:images/)?"+folder+"/"+n+"\\.(jpg|jpeg|png|webp)$","i");
+  return Object.keys(S.tree).filter(p=>re.test(p));
+}
+function slotThumbUrl(folder,n){
+  const key=folder+"/"+n; if(S.preview[key]) return S.preview[key];
+  const ps=slotPaths(folder,n); if(!ps.length) return null;
+  const p=ps.find(x=>/\.jpg$/.test(x))||ps[0];
+  return `https://raw.githubusercontent.com/${S.owner}/${S.repo}/${S.branch}/${encPath(p)}?v=${S.tree[p]}`;
+}
+function resizeToJpeg(file){
+  return new Promise((res,rej)=>{
+    const url=URL.createObjectURL(file), im=new Image();
+    im.onload=()=>{
+      let w=im.naturalWidth,h=im.naturalHeight; const sc=Math.min(1,1600/Math.max(w,h)); w=Math.round(w*sc); h=Math.round(h*sc);
+      const c=document.createElement("canvas"); c.width=w; c.height=h; const x=c.getContext("2d");
+      x.fillStyle="#fff"; x.fillRect(0,0,w,h); x.drawImage(im,0,0,w,h); URL.revokeObjectURL(url);
+      c.toBlob(b=>b?res(b):rej(new Error("Could not process this image.")),"image/jpeg",0.85);
+    };
+    im.onerror=()=>{ URL.revokeObjectURL(url); rej(new Error("This file is not a picture the browser can read.")); };
+    im.src=url;
+  });
+}
+const blobToB64=blob=>new Promise((res,rej)=>{const r=new FileReader(); r.onload=()=>res(String(r.result).split(",")[1]); r.onerror=rej; r.readAsDataURL(blob);});
+function setMsg(el,t,err){ const m=el.querySelector(".slot-msg"); m.textContent=t; m.className="slot-msg"+(err?" err":""); }
+const apiErr=r=>{
+  if(r.status===401||r.status===403) return "GitHub did not allow this. Check that your token is valid and has Contents: Read and write.";
+  return (r.body&&r.body.message)||("Error "+r.status);
+};
+const putPhoto=(path,b64)=>{
+  const body={message:"Upload photo via admin",content:b64,branch:S.branch}; if(S.tree[path]) body.sha=S.tree[path];
+  return gh(`/repos/${S.owner}/${S.repo}/contents/${encPath(path)}`,{method:"PUT",body:JSON.stringify(body),headers:{"Content-Type":"application/json"}});
+};
+const delPhoto=p=>gh(`/repos/${S.owner}/${S.repo}/contents/${encPath(p)}`,{method:"DELETE",body:JSON.stringify({message:"Remove photo via admin",sha:S.tree[p],branch:S.branch}),headers:{"Content-Type":"application/json"}});
+
+async function upload(folder,n,file,el){
+  if(S.busy){ setMsg(el,"Please wait, another upload is still running.",true); return; }
+  S.busy=true; setMsg(el,"Processing…");
+  try{
+    const blob=await resizeToJpeg(file), b64=await blobToB64(blob);
+    const path=`${S.root}${folder}/${n}.jpg`;
+    setMsg(el,"Uploading…");
+    let r=await putPhoto(path,b64);
+    if(!r.ok&&(r.status===409||r.status===422)){ await loadTree(); r=await putPhoto(path,b64); }
+    if(!r.ok) throw new Error(apiErr(r));
+    S.tree[path]=r.body.content.sha;
+    for(const p of slotPaths(folder,n)){ if(p!==path){ const d=await delPhoto(p); if(d.ok) delete S.tree[p]; } }
+    S.preview[folder+"/"+n]=URL.createObjectURL(blob);
+    el._draw(); refreshThumbs(); setMsg(el,"Uploaded. Live in about a minute.");
+  }catch(e){ setMsg(el,"Not uploaded: "+(e.message||"something went wrong."),true); }
+  finally{ S.busy=false; }
+}
+async function removeSlot(folder,n,el){
+  if(S.busy){ setMsg(el,"Please wait, another upload is still running.",true); return; }
+  if(!confirm("Remove this photo from the site?")) return;
+  S.busy=true; setMsg(el,"Removing…");
+  try{
+    for(const p of slotPaths(folder,n)){ const d=await delPhoto(p); if(!d.ok) throw new Error(apiErr(d)); delete S.tree[p]; }
+    delete S.preview[folder+"/"+n];
+    el._draw(); refreshThumbs(); setMsg(el,"Removed.");
+  }catch(e){ setMsg(el,"Not removed: "+(e.message||"something went wrong."),true); }
+  finally{ S.busy=false; }
+}
+function makeSlot(folder,n,label){
+  const el=document.createElement("div"); el.className="slot";
+  el._draw=()=>{
+    const u=slotThumbUrl(folder,n);
+    el.innerHTML=`<div class="slot-img">${u?`<img src="${esc(u)}" alt="">`:"<span>empty</span>"}</div>
+      <div class="slot-lab">${esc(label)}</div>
+      <div class="slot-btns"><label class="btn small">${u?"Replace":"Upload"}<input type="file" accept="image/*" hidden></label>${u?'<button type="button" class="btn small ghost" data-rm>Remove</button>':""}</div>
+      <div class="slot-msg" role="status"></div>`;
+    el.querySelector("input").addEventListener("change",e=>{ const f=e.target.files[0]; if(f) upload(folder,n,f,el); });
+    const rm=el.querySelector("[data-rm]"); if(rm) rm.addEventListener("click",()=>removeSlot(folder,n,el));
+  };
+  el._draw(); return el;
+}
+function refreshThumb(card){
+  const t=card.querySelector(".thumb"), u=slotThumbUrl(card.dataset.folder,1);
+  if(u){ t.innerHTML=""; const im=document.createElement("img"); im.src=u; im.alt=""; t.appendChild(im); }
+  else t.textContent="no photo";
+}
+function refreshThumbs(){ document.querySelectorAll(".work[data-folder]").forEach(refreshThumb); }
+function renderPagePhotos(){
+  const box=$("pagePhotos"); box.innerHTML="<h2>Page photos</h2>";
+  if(!S.treeOk){ const p=document.createElement("p"); p.className="note"; p.textContent="Could not list your photos from GitHub. Check that the token has Contents: Read and write. You can still edit the works below."; box.appendChild(p); }
+  const g=document.createElement("div"); g.className="slots";
+  PAGE_SLOTS.forEach(([f,l])=>g.appendChild(makeSlot(f,1,l)));
+  box.appendChild(g);
+}
+
+/* ---------- Editor ---------- */
+function setDirty(){ S.dirty=true; setSave(); }
+function setSave(){
+  $("save").disabled=!S.dirty;
+  if(S.dirty) $("saveMsg").textContent="You have unsaved changes.";
+  else if(S.sha!==null) $("saveMsg").textContent="All changes saved.";
+}
+window.addEventListener("beforeunload",e=>{ if(S.dirty){ e.preventDefault(); e.returnValue=""; } });
+
+function render(){
+  const list=$("list"); list.innerHTML="";
+  S.works.forEach((w,i)=>{
+    const card=document.createElement("div"); card.className="work";
+    card.innerHTML=`
+      <div class="work-head">
+        <div class="thumb" aria-hidden="true">no photo</div>
+        <div class="folder">${esc(w.title||"Untitled")}<small>Folder: ${esc(w.folder)}</small></div>
+        <button class="btn" type="button" data-act="up" ${i===0?"disabled":""} aria-label="Move up">↑</button>
+        <button class="btn" type="button" data-act="down" ${i===S.works.length-1?"disabled":""} aria-label="Move down">↓</button>
+        <button class="btn" type="button" data-act="remove">Remove</button>
+      </div>
+      <div class="work-body">
+        <label>Name<input data-f="title" value="${esc(w.title)}"></label>
+        <label>Description<textarea data-f="description">${esc(w.description)}</textarea></label>
+        <div class="row three">
+          <label>Year<input data-f="year" value="${esc(w.year)}"></label>
+          <label>Materials<input data-f="materials" value="${esc(w.materials)}"></label>
+          <label>Size<input data-f="size" value="${esc(w.size)}" placeholder="40 × 50 cm"></label>
+        </div>
+        <div class="checks">
+          <label class="check"><input type="checkbox" data-f="original" ${w.original?"checked":""}> Original available</label>
+          <label class="check"><input type="checkbox" data-f="print" ${w.print?"checked":""}> Print available</label>
+        </div>
+        <div class="row two">
+          <label>Original price<input data-f="originalPrice" value="${esc(w.originalPrice)}" placeholder="€450"></label>
+          <label>Print price<input data-f="printPrice" value="${esc(w.printPrice)}" placeholder="€30"></label>
+        </div>
+      </div>`;
+    card.querySelectorAll("[data-f]").forEach(el=>{
+      const f=el.dataset.f;
+      el.addEventListener(el.type==="checkbox"?"change":"input",()=>{
+        w[f]=el.type==="checkbox"?el.checked:el.value;
+        if(f==="title") card.querySelector(".folder").firstChild.textContent=w.title||"Untitled";
+        setDirty();
+      });
+    });
+    card.querySelectorAll("[data-act]").forEach(b=>b.addEventListener("click",()=>{
+      const a=b.dataset.act;
+      if(a==="up"&&i>0) [S.works[i-1],S.works[i]]=[S.works[i],S.works[i-1]];
+      else if(a==="down"&&i<S.works.length-1) [S.works[i+1],S.works[i]]=[S.works[i],S.works[i+1]];
+      else if(a==="remove"){ if(!confirm(`Remove "${w.title||w.folder}" from the list? Its photos stay on GitHub.`)) return; S.works.splice(i,1); }
+      setDirty(); render();
+    }));
+    card.dataset.folder=w.folder;
+    const ph=document.createElement("div"); ph.className="photos";
+    ph.innerHTML='<div class="photos-title">Photos</div>';
+    const grid=document.createElement("div"); grid.className="slots";
+    [1,2,3].forEach(n=>grid.appendChild(makeSlot(w.folder,n,SLOT_LABELS[n])));
+    ph.appendChild(grid);
+    const nt=document.createElement("p"); nt.className="note"; nt.textContent="This work stays hidden on the site until it has Photo 1."; ph.appendChild(nt);
+    card.querySelector(".work-body").appendChild(ph);
+    list.appendChild(card);
+    refreshThumb(card);
+  });
+}
+$("addWork").onclick=()=>{
+  const nums=S.works.map(w=>parseInt((w.folder.match(/work-(\d+)/)||[])[1]||0,10));
+  const next="work-"+String((nums.length?Math.max.apply(null,nums):0)+1).padStart(2,"0");
+  S.works.push(blank(next,"New work")); setDirty(); render();
+  const cards=$("list").children; cards[cards.length-1].scrollIntoView({behavior:"smooth",block:"center"});
+};
+
+$("formEndpoint").addEventListener("input",()=>{ S.settings.formEndpoint=$("formEndpoint").value.trim(); setDirty(); });
+
+/* ---------- Save ---------- */
+$("save").onclick=async()=>{
+  const fe=S.settings.formEndpoint||"";
+  if(fe&&!/^https:\/\/formspree\.io\/f\/[A-Za-z0-9]+$/.test(fe)&&!confirm("The form address does not look like a Formspree address (https://formspree.io/f/abcd1234). Save anyway?")) return;
+  $("save").disabled=true; $("saveMsg").textContent="Saving…";
+  const json=JSON.stringify({settings:S.settings,works:S.works},null,2)+"\n";
+  const body={message:"Update works via admin",content:toB64(json),branch:S.branch};
+  if(S.sha) body.sha=S.sha;
+  try{
+    const r=await gh(`/repos/${S.owner}/${S.repo}/contents/content.json`,{method:"PUT",body:JSON.stringify(body),headers:{"Content-Type":"application/json"}});
+    if(!r.ok){
+      if(r.status===409||r.status===422) throw new Error("The file changed on GitHub since you opened this page. Reload this page and try again.");
+      if(r.status===401||r.status===403||r.status===404) throw new Error("GitHub did not allow the save. Check that your token is still valid and has Contents: Read and write.");
+      throw new Error((r.body&&r.body.message)||("Error "+r.status));
+    }
+    S.sha=r.body.content.sha; S.dirty=false; setSave();
+    $("saveMsg").textContent="Saved. The site shows the changes in about a minute.";
+  }catch(e){
+    $("saveMsg").textContent="Not saved: "+(e.message||"something went wrong."); $("save").disabled=false;
+  }
+};
+</script>
+</body>
+</html>
