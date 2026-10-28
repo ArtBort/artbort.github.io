@@ -131,6 +131,18 @@
       "print": true,
       "originalPrice": "650€",
       "printPrice": "40€"
+    },
+    {
+      "folder": "work-12",
+      "title": "Doorways",
+      "year": "2016",
+      "materials": "paper gkue tape old magazine",
+      "size": "",
+      "description": "",
+      "original": true,
+      "print": true,
+      "originalPrice": "",
+      "printPrice": ""
     }
   ]
 }
