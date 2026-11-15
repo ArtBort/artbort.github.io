@@ -146,6 +146,18 @@
       "print": true,
       "originalPrice": "500",
       "printPrice": "40"
+    },
+    {
+      "folder": "work-13",
+      "title": "NEGATIVE. ",
+      "year": "2026",
+      "materials": "SONY A6300 / GIMP ",
+      "size": "A4",
+      "description": "SPIRALS OF HER MIND.",
+      "original": true,
+      "print": true,
+      "originalPrice": "",
+      "printPrice": "30"
     }
   ]
 }
