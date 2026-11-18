@@ -4,6 +4,18 @@
   },
   "works": [
     {
+      "folder": "work-15",
+      "title": "Sarah is a goner.",
+      "year": "2026",
+      "materials": "mixed media",
+      "size": "A4",
+      "description": "this work represents the feeling of a person that has lost grasp on life. \nwe call her sarah. Last seen wearing red. Nobody’s talking. 🗞️",
+      "original": true,
+      "print": true,
+      "originalPrice": "450",
+      "printPrice": "25"
+    },
+    {
       "folder": "work-01",
       "title": " Telling Stories Since 1992",
       "year": "2026",
