@@ -4,6 +4,18 @@
   },
   "works": [
     {
+      "folder": "work-20",
+      "title": "Did you see that?",
+      "year": "2026",
+      "materials": "",
+      "size": "",
+      "description": "This collage is called, Did you see that?\nIt is part of a series of collages called, \nDo you hear this? \nit consists of twelve parts displayed in a cd boxes.",
+      "original": true,
+      "print": true,
+      "originalPrice": "150",
+      "printPrice": "20"
+    },
+    {
       "folder": "work-19",
       "title": "pathways.",
       "year": "2026",
